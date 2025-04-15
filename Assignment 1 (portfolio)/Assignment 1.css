@@ -506,4 +506,6 @@ section {
     transform: translateY(-2px);
   }
   
-  
+  .main-wrapper.visible {
+  display: block; /* Or any other display value you need, like flex, grid, etc. */
+}
