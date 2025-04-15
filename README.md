@@ -1,5 +1,3 @@
-# my-portfolio-html-only
-
 # Ahmad Syahidul Amin Portfolio
 
 ## Overview
