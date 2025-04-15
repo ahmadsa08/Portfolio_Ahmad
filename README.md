@@ -39,4 +39,4 @@ To view the website:
 * [www.linkedin.com/in/
 ahmad-syahidul-amin-4a3606360
 ]
-* [Your Other Social Media Links]
+* [[Your Other Social Media Links](https://api.whatsapp.com/send/?phone=601161301310&text&type=phone_number&app_absent=0)]
