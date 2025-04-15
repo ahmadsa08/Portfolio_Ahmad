@@ -1,0 +1,509 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Default dark background */
+    color: #eee; /* Default light text */
+    transition: background-color 0.3s, color 0.3s;
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    padding: 12px 24px;
+    border: 2px solid #ff5722;
+    background-color: transparent;
+    color: #ff5722;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #ff5722;
+    color: white;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 280px;
+    background-color: #212121;
+    height: 100%;
+    color: white;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+}
+
+.sidebar h1 {
+    font-size: 24px;
+    margin-bottom: 30px;
+    font-weight: bold;
+    position: relative; /* For positioning the brackets */
+    display: inline-block; /* To contain the brackets */
+    padding: 0 5px; /* Add some padding around the text */
+}
+
+.sidebar h1::before,
+.sidebar h1::after {
+    content: '';
+    position: absolute;
+    border: 2px solid #ff5722; /* Same red color */
+    width: 20px;
+    height: 20px;
+}
+
+.sidebar h1::before {
+    top: -5px;
+    left: -5px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.sidebar h1::after {
+    bottom: -5px;
+    right: -5px;
+    border-top: none;
+    border-left: none;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    width: 100%;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
+}
+
+.sidebar ul li a {
+    color: #ddd;
+    font-size: 18px;
+    display: block;
+    padding: 12px 15px;
+    border-radius: 6px;
+    transition: background-color 0.3s;
+    position: relative; /* For positioning portfolio brackets */
+}
+
+.sidebar ul li a:hover {
+    background-color: #333;
+}
+
+/* Style for the icons in the sidebar */
+.sidebar ul li a i {
+    margin-right: 10px; /* Add some space between the icon and text */
+    font-size: 1.2em; /* Adjust the size of the icons */
+    vertical-align: middle; /* Align icons vertically with the text */
+}
+
+/* Main Content */
+.main-content {
+    margin-left: 280px;
+    padding: 60px;
+    transition: margin-left 0.3s;
+    flex-grow: 1;
+    background-color: #121212;
+    position: relative; /* For decorative elements */
+}
+
+.content-section {
+    display: none; /* Initially hide all sections */
+}
+
+.content-section.active {
+    display: block; /* Show the active section */
+}
+
+section {
+    margin-bottom: 100px;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+/* Hero Section */
+#home-section .hero-container {
+    display: flex;
+    align-items: center; /* Align items vertically in the container */
+    justify-content: space-between;
+    gap: 40px;
+    padding: 40px;
+}
+
+.hero-text {
+    flex: 1;
+}
+
+.hero-text h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #eee;
+    margin-bottom: 10px;
+}
+
+.hero-text .profession {
+    font-size: 24px;
+    color: #ff5722;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+.hero-image {
+    flex-shrink: 0;
+    width: 300px; /* Adjust as needed */
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* To position the pseudo-elements */
+}
+
+.hero-image::before {
+    content: '';
+    position: absolute;
+    top: -10px; /* Adjust for spacing */
+    left: -10px; /* Adjust for spacing */
+    right: -10px; /* Adjust for spacing */
+    bottom: -10px; /* Adjust for spacing */
+    border: 2px solid #ff5722; /* Your desired border color */
+    border-radius: 10px; /* Match or slightly larger than image border-radius */
+    z-index: -1; /* Place behind the image and its rounded corners */
+}
+
+.hero-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: inherit; /* Inherit the border-radius from the parent */
+}
+
+.hero-name {
+    margin-top: 10px;
+    color: #ddd;
+    font-size: 16px;
+    text-align: center; /* Center the text */
+    width: 100%; /* Make it take the full width of the container */
+}
+
+/* Remove the previous image bracket styling */
+#home-section .hero-image::before,
+#home-section .hero-image::after {
+    content: none;
+}
+
+/* Theme Switcher */
+#theme-switcher {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    display: flex; /* Keep flex for centering if needed */
+    color: white;
+    z-index: 999;
+}
+
+#theme-toggle {
+    background-color: rgba(0, 0, 0, 0.1); /* Subtle dark background */
+    border: none;
+    color: white;
+    font-size: 24px; /* Adjust size as needed */
+    cursor: pointer;
+    padding: 8px; /* Add some padding for the background */
+    border-radius: 6px; /* Optional: Add a slight border radius */
+    transition: background-color 0.3s; /* Smooth transition for background */
+}
+
+#theme-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Slightly darker on hover */
+}
+
+/* Settings Panel and Theme Colors */
+.settings-panel {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001; /* Ensure it's above other content */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.settings-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 10px;
+    color: #ddd; /* Adjust color */
+}
+
+.theme-colors {
+    display: flex;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+}
+
+.settings-panel.open .theme-colors {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.theme-colors span {
+    display: block;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Light Theme */
+.light-theme {
+    background-color: #fefefe;
+    color: #222; /* Default text color in light mode is black */
+}
+
+.light-theme #theme-toggle {
+    color: #333; /* Dark color for the icon in light mode */
+    background-color: rgba(220, 220, 220, 0.3); /* Subtle light background */
+}
+
+.light-theme #theme-toggle:hover {
+    background-color: rgba(220, 220, 220, 0.5);
+}
+
+.light-theme .sidebar {
+    background: linear-gradient(180deg, #f0f0f0, #ddd);
+    color: #222;
+}
+
+.light-theme .sidebar ul li a {
+    color: #333;
+}
+
+.light-theme .sidebar ul li a:hover {
+    background-color: #e0e0e0;
+}
+
+.light-theme .main-content {
+    background-color: #fefefe;
+}
+
+.light-theme section {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .hero-text h1 {
+    color: #222; /* Black color for "Hello, my name is" */
+}
+
+.light-theme .hero-text .profession {
+    color: #ff5722; /* Orange color for "I'm a Web Developer" */
+}
+
+.light-theme .hero-text p {
+    color: #222; /* Black color for the paragraph text in light mode */
+}
+
+.light-theme .hero-name {
+    color: #222; /* Black color for the name in light mode */
+}
+
+/* Orange Theme */
+.orange-theme {
+    background-color: #ffe0b2; /* Light orange */
+    color: #333;
+}
+
+.orange-theme #theme-toggle {
+    color: #333;
+    background-color: rgba(255, 160, 0, 0.3); /* Darker orange for icon */
+}
+
+.orange-theme #theme-toggle:hover {
+    background-color: rgba(255, 160, 0, 0.5);
+}
+
+.orange-theme .sidebar {
+    background: linear-gradient(180deg, #ffcc80, #ffa726); /* Darker orange sidebar */
+    color: #333;
+}
+
+.orange-theme .sidebar ul li a {
+    color: #5e35b1; /* Example purple accent */
+}
+
+.orange-theme .sidebar ul li a:hover {
+    background-color: #f57c00; /* Darker hover */
+    color: #fff;
+}
+
+.orange-theme .main-content {
+    background-color: #ffe0b2;
+}
+
+.orange-theme section {
+    background-color: #fff8e1; /* Lighter orange section */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.orange-theme .hero-text h1 {
+    color: #d84315; /* Darker orange */
+}
+
+.orange-theme .hero-text .profession {
+    color: #5e35b1; /* Example purple accent */
+}
+
+.orange-theme .hero-text p {
+    color: #424242;
+}
+
+.orange-theme .hero-name {
+    color: #212121;
+}
+
+.orange-theme button {
+    border-color: #d84315;
+    color: #d84315;
+}
+
+.orange-theme button:hover {
+    background-color: #d84315;
+    color: #fff;
+}
+
+/* Blue Theme */
+.blue-theme {
+    background-color: #e3f2fd; /* Light blue */
+    color: #333;
+}
+
+.blue-theme #theme-toggle {
+    color: #333;
+    background-color: rgba(33, 150, 243, 0.3); /* Darker blue for icon */
+}
+
+.blue-theme #theme-toggle:hover {
+    background-color: rgba(33, 150, 243, 0.5);
+}
+
+.blue-theme .sidebar {
+    background: linear-gradient(180deg, #bbdefb, #64b5f6); /* Darker blue sidebar */
+    color: #fff;
+}
+
+.blue-theme .sidebar ul li a {
+    color: #fff;
+}
+
+.blue-theme .sidebar ul li a:hover {
+    background-color: #1e88e5; /* Darker hover */
+}
+
+.blue-theme .main-content {
+    background-color: #e3f2fd;
+}
+
+.blue-theme section {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.blue-theme .hero-text h1 {
+    color: #1976d2; /* Darker blue */
+}
+
+.blue-theme .hero-text .profession {
+    color: #00bcd4; /* Cyan color */
+}
+
+.blue-theme .hero-text p {
+    color: #424242;
+}
+
+.blue-theme .hero-name {
+    color: #212121;
+}
+
+.blue-theme button {
+    border-color: #1976d2;
+    color: #1976d2;
+}
+
+.blue-theme button:hover {
+    background-color: #1976d2;
+    color: #fff;
+}
+
+.hire-me-btn {
+    z-index: 9999; /* Ensure it's on top */
+  }  
+
+.hire-me-btn {
+    display: inline-block;
+    padding: 12px 28px;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;  /* Ensures the link looks like a button */
+    border-radius: 40px;
+    box-shadow: 0 4px 15px rgba(0, 114, 255, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer; /* Makes it clickable like a button */
+  }
+  
+  .hire-me-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: skewX(-20deg);
+    transition: all 0.5s ease;
+  }
+  
+  .hire-me-btn:hover::before {
+    left: 125%;
+  }
+  
+  .hire-me-btn:hover {
+    box-shadow: 0 6px 20px rgba(0, 114, 255, 0.6);
+    transform: translateY(-2px);
+  }
+  
+  
