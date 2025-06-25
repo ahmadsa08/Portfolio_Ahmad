@@ -29,7 +29,7 @@ The website is deployed using GitHub Pages.
 
 To view the website:
 
-1.  Visit the following URL: [[Your GitHub Pages URL](https://ahmadsa08.github.io/my-portfolio-html-only/)] 
+1.  Visit the following URL: [[Your GitHub Pages URL](https://ahmadsa08.github.io/Portfolio_Ahmad/)] 
 
 ## Contact
 
