@@ -120,6 +120,7 @@ button:hover {
 .main-content {
     margin-left: 280px;
     padding: 60px;
+    width: 100%;
     transition: margin-left 0.3s;
     flex-grow: 1;
     background-color: #121212;
