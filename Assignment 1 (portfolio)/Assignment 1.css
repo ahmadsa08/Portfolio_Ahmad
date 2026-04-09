@@ -510,3 +510,107 @@ section {
   .main-wrapper.visible {
   display: block; /* Or any other display value you need, like flex, grid, etc. */
 }
+/* ============================= */
+/* ✅ RESPONSIVE IMPROVEMENTS */
+/* ============================= */
+
+/* Fix main layout */
+.main-content {
+    width: 100%;
+}
+
+/* Smooth scrolling (nice UX) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Fix project grid for smaller screens */
+.projects-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Make images responsive */
+.project-card img {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+}
+
+/* ============================= */
+/* 📱 TABLET VIEW */
+/* ============================= */
+@media (max-width: 768px) {
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+        margin-bottom: 80px;
+    }
+
+    section {
+        padding: 20px;
+    }
+
+    /* Sidebar → bottom navbar */
+    .sidebar {
+        width: 100%;
+        height: 70px;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        bottom: 0;
+        top: auto;
+        padding: 0;
+    }
+
+    .sidebar h1 {
+        display: none;
+    }
+
+    .sidebar ul {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        padding: 0;
+    }
+
+    .sidebar a {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    /* Hero section fix */
+    .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image {
+        width: 200px;
+        margin: 0 auto;
+    }
+}
+
+/* ============================= */
+/* 📱 MOBILE VIEW */
+/* ============================= */
+@media (max-width: 576px) {
+
+    .main-content {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    .download-button,
+    .hire-me-button {
+        width: 100%;
+        text-align: center;
+    }
+}
