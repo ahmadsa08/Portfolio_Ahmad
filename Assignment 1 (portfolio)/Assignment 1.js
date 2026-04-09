@@ -11,80 +11,75 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTextElement = document.querySelector('.hero-text h1');
     const heroDescriptionElement = document.querySelector('.hero-description');
     const body = document.querySelector('body');
-    const themeToggle = document.getElementById('theme-toggle'); // Get the theme toggle button
-    const navLinks = document.querySelectorAll('nav a'); // Get all navigation links
-    const sections = document.querySelectorAll('.content-section'); // Get all sections
+    const themeToggle = document.getElementById('theme-toggle');
+    const navLinks = document.querySelectorAll('nav a');
+    const sections = document.querySelectorAll('.content-section');
 
-
-    // Show main content and initialize AOS after the splash screen
-    setTimeout(function () {
+    // --- Splash Screen ---
+    setTimeout(() => {
         splashContainer.style.display = 'none';
         mainWrapper.style.display = 'block';
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 1000, once: true });
     }, 3000);
 
+    // --- Settings Panel Toggle ---
     settingsIcon.addEventListener('click', () => {
-        settingsPanel.style.display = settingsPanel.style.display === 'block' ? 'none' : 'none';
+        settingsPanel.style.display = settingsPanel.style.display === 'block' ? 'none' : 'block';
     });
+
+    // --- Color Swatches ---
+    const applyAccentColor = (color) => {
+        professionElement && (professionElement.style.color = color);
+        downloadButtonElement && (downloadButtonElement.style.borderColor = color);
+        downloadButtonElement && (downloadButtonElement.style.color = color);
+        portfolioHeading && (portfolioHeading.style.borderBottomColor = color);
+        heroNameElement && (heroNameElement.style.color = color);
+        const nameSpan = heroTextElement?.querySelector('.accent-name');
+        if (nameSpan) nameSpan.style.color = color;
+    };
 
     colorSwatches.forEach(swatch => {
         swatch.addEventListener('click', (e) => {
             const selectedColor = e.target.getAttribute('data-color');
-            professionElement.style.color = selectedColor;
-            downloadButtonElement.style.borderColor = selectedColor;
-            downloadButtonElement.style.color = selectedColor;
-            portfolioHeading.style.borderBottomColor = selectedColor;
-            heroNameElement.style.color = selectedColor;
-            const nameSpan = heroTextElement.querySelector('.accent-name');
-            if (nameSpan) {
-                nameSpan.style.color = selectedColor;
-            }
+            applyAccentColor(selectedColor);
             localStorage.setItem('accentColor', selectedColor);
         });
     });
 
+    // Restore saved accent color
     const savedColor = localStorage.getItem('accentColor');
-    if (savedColor) {
-        professionElement.style.color = savedColor;
-        downloadButtonElement.style.borderColor = savedColor;
-        downloadButtonElement.style.color = savedColor;
-        portfolioHeading.style.borderBottomColor = savedColor;
-        heroNameElement.style.color = savedColor;
-        const nameSpan = heroTextElement.querySelector('.accent-name');
-        if (nameSpan) {
-            nameSpan.style.color = savedColor;
-        }
-    }
+    if (savedColor) applyAccentColor(savedColor);
 
-    // Theme toggle functionality
+    // --- Theme Toggle ---
+    const applyTheme = (theme) => {
+        body.className = theme;
+        themeToggle.textContent = theme === 'dark-theme' ? '🌓' : '☀️';
+    };
+
     themeToggle.addEventListener('click', () => {
-        if (body.classList.contains('dark-theme')) {
-            body.classList.remove('dark-theme');
-            body.classList.add('light-theme');
-            themeToggle.textContent = '☀️'; // Change to sun icon for light theme
-        } else {
-            body.classList.remove('light-theme');
-            body.classList.add('dark-theme');
-            themeToggle.textContent = '🌓'; // Change to moon icon for dark theme
-        }
-        localStorage.setItem('theme', body.classList.contains('dark-theme') ? 'dark-theme' : 'light-theme');
+        const newTheme = body.classList.contains('dark-theme') ? 'light-theme' : 'dark-theme';
+        applyTheme(newTheme);
+        localStorage.setItem('theme', newTheme);
     });
 
-    // Smooth scrolling for navigation links and section activation
+    // Restore saved theme
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme) applyTheme(savedTheme);
+
+    // --- Navigation Smooth Scroll ---
     navLinks.forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
-            const targetId = this.getAttribute('href');
-             // Use window.location.href to open a new page
-            window.location.href = targetId.replace('#', '') + '.html';
-           
+            const targetSection = document.querySelector(this.getAttribute('href'));
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+                // Update active section
+                sections.forEach(sec => sec.classList.remove('active-section'));
+                targetSection.classList.add('active-section');
+            }
         });
     });
 
-    // Make the 'Home' section active by default
-    document.getElementById('home-section').classList.add('active-section');
+    // --- Default Active Section ---
+    document.getElementById('home-section')?.classList.add('active-section');
 });
-</script>
